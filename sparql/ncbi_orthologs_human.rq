@@ -1,0 +1,12 @@
+#!/usr/bin/env spang2
+# @endpoint spang
+# @option -a
+
+SELECT (COUNT(DISTINCT ?gene1) AS ?count) ?taxid ?label
+WHERE {
+  ?gene1 oo:hasOrtholog ?gene2 ;
+         oo:taxon taxid:9606 .
+  ?gene2 oo:taxon ?taxid .
+  ?taxid rdfs:label ?label .
+}
+ORDER BY DESC(?count)
