@@ -6,10 +6,11 @@ my $PROGRAM = basename $0;
 my $USAGE=
 "Usage: $PROGRAM TAXID_SUMMARY
 -b: binary pattern
+-c: count organisms with orthologs
 ";
 
 my %OPT;
-getopts('b', \%OPT);
+getopts('bc', \%OPT);
 
 if (!@ARGV) {
     print STDERR $USAGE;
@@ -19,7 +20,11 @@ my ($TAXID_SUMMARY) = @ARGV;
 
 my @TAXID = `cat $TAXID_SUMMARY | cut -f1`;
 chomp @TAXID;
-print join("\t", "HUMAN_GENE", @TAXID), "\n";
+if ($OPT{c}) {
+    print join("\t", "HUMAN_GENE", "COUNT_ORGANISMS"), "\n";
+} else {
+    print join("\t", "HUMAN_GENE", @TAXID), "\n";
+}
 
 my %HASH;
 while (<STDIN>) {
@@ -70,5 +75,9 @@ for my $human_gene (@HUMAN_GENE) {
 }
 
 for my $human_gene (sort {$ORTHOLOG_COUNT{$b} <=> $ORTHOLOG_COUNT{$a}} @HUMAN_GENE) {
-    print "$human_gene\t$ORTHOLOG_PATTERN{$human_gene}\n";
+    if ($OPT{c}) {
+        print "$human_gene\t$ORTHOLOG_COUNT{$human_gene}\n";
+    } else {
+        print "$human_gene\t$ORTHOLOG_PATTERN{$human_gene}\n";
+    }
 }
