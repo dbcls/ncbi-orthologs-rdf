@@ -5,10 +5,11 @@ use Getopt::Std;
 my $PROGRAM = basename $0;
 my $USAGE=
 "Usage: $PROGRAM TAXID_SUMMARY
+-b: binary pattern
 ";
 
 my %OPT;
-getopts('', \%OPT);
+getopts('b', \%OPT);
 
 if (!@ARGV) {
     print STDERR $USAGE;
@@ -50,10 +51,18 @@ for my $human_gene (@HUMAN_GENE) {
     for my $taxid (@TAXID) {
         if ($HASH{$human_gene}{$taxid}) {
             my @gene = sort keys %{$HASH{$human_gene}{$taxid}};
-            push @ortholog, join(",", @gene);
+            if ($OPT{b}) {
+                push @ortholog, "1";
+            } else {
+                push @ortholog, join(",", @gene);
+            }
             $count++;
         } else {
-            push @ortholog, "NULL";
+            if ($OPT{b}) {
+                push @ortholog, "0";
+            } else {
+                push @ortholog, "NULL";
+            }
         }
     }
     $ORTHOLOG_COUNT{$human_gene} = $count;
