@@ -65,6 +65,7 @@ sub print_ortholog {
     my ($taxid1, $taxid2, $gene1, $gene2) = @_;
     
     print "ncbigene:$gene1 oo:hasOrtholog ncbigene:$gene2 .\n";
+    print "ncbigene:$gene2 oo:hasOrtholog ncbigene:$gene1 .\n";
     print "ncbigene:$gene1 oo:taxon taxid:$taxid1 . \n";
     print "ncbigene:$gene2 oo:taxon taxid:$taxid2 . \n";
     print "\n";
