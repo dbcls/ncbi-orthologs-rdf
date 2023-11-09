@@ -39,11 +39,11 @@ while (<STDIN>) {
     # } else {
     #     die;
     # }
-    # if ($other_gene =~ /^ncbigene:/) {
-    #     $other_gene =~ s/^ncbigene://;
-    # } else {
-    #     die;
-    # }
+    if ($other_gene =~ /^ncbigene:/) {
+        $other_gene =~ s/^ncbigene://;
+    } else {
+        die;
+    }
     $HASH{$human_gene}{$taxid}{$other_gene} = 1;
 }
 
