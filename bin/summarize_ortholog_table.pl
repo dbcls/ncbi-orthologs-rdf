@@ -28,19 +28,38 @@ while (<STDIN>) {
         die;
     }
     my ($human_gene, $other_gene, $taxid) = @f;
+    # if ($human_gene =~ /^ncbigene:/) {
+    #     $human_gene =~ s/^ncbigene://;
+    # } else {
+    #     die;
+    # }
+    # if ($other_gene =~ /^ncbigene:/) {
+    #     $other_gene =~ s/^ncbigene://;
+    # } else {
+    #     die;
+    # }
     $HASH{$human_gene}{$taxid}{$other_gene} = 1;
 }
 
 my @HUMAN_GENE = sort keys %HASH;
+my %ORTHOLOG_COUNT;
+my %ORTHOLOG_PATTERN;
 for my $human_gene (@HUMAN_GENE) {
     my @ortholog;
+    my $count = 0;
     for my $taxid (@TAXID) {
         if ($HASH{$human_gene}{$taxid}) {
             my @gene = sort keys %{$HASH{$human_gene}{$taxid}};
-            push @ortholog, join(",", @gene)
+            push @ortholog, join(",", @gene);
+            $count++;
         } else {
             push @ortholog, "NULL";
         }
     }
-    print "$human_gene\t", join("\t", @ortholog), "\n";
+    $ORTHOLOG_COUNT{$human_gene} = $count;
+    $ORTHOLOG_PATTERN{$human_gene} = join("\t", @ortholog);
+}
+
+for my $human_gene (sort {$ORTHOLOG_COUNT{$b} <=> $ORTHOLOG_COUNT{$a}} @HUMAN_GENE) {
+    print "$human_gene\t$ORTHOLOG_PATTERN{$human_gene}\n";
 }
