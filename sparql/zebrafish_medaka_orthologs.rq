@@ -1,0 +1,10 @@
+PREFIX orth: <http://purl.org/net/orth#>
+PREFIX taxid: <http://identifiers.org/taxonomy/>
+PREFIX : <https://dbcls.github.io/ncbigene-rdf/ontology.ttl#>
+
+SELECT DISTINCT ?gene1 ?gene2
+WHERE {
+  ?gene1 orth:hasOrtholog+ ?gene2 .
+  ?gene1 :taxid taxid:7955 .
+  ?gene2 :taxid taxid:8090 .
+}
