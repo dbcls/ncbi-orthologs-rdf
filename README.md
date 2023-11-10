@@ -11,6 +11,15 @@ NCBI Gene
 * Download
   * ftp://ftp.ncbi.nlm.nih.gov/gene/DATA/gene_orthologs.gz
 
+## Created RDF
+
+```
+$ ./bin/ncbi_orthologs_rdf.pl data/gene_orthologs > data/gene_orthologs.ttl
+```
+
+Creator
+* Hirokazu Chiba
+
 ## Summary
 
 For 19,584 human genes, orthologous genes were identified in other organisms
