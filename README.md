@@ -20,6 +20,9 @@ $ ./bin/ncbi_orthologs_rdf.pl gene_orthologs > gene_orthologs.ttl
 Creator
 * Hirokazu Chiba
 
+Schema
+* https://raw.githubusercontent.com/dbcls/ncbi-orthologs-rdf/master/config/schema.svg
+
 SPARQL
 * [human_mouse_orthologs.rq](https://github.com/dbcls/ncbi-orthologs-rdf/blob/main/sparql/human_mouse_orthologs.rq)
 
