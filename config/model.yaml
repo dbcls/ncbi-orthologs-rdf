@@ -1,0 +1,5 @@
+- Gene ncbigene:1:
+  - orth:hasOrtholog:
+    - ortholog: ncbigene:117586
+  - ncbio:taxid:
+    - taxid: taxid:9606
