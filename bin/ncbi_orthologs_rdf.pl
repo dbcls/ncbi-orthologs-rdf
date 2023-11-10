@@ -11,9 +11,10 @@ my $USAGE=
 my %OPT;
 getopts('H', \%OPT);
 
-print "\@prefix oo: <http://purl.org/net/orth#> .\n";
+print "\@prefix orth: <http://purl.org/net/orth#> .\n";
 print "\@prefix taxid: <http://identifiers.org/taxonomy/> .\n";
 print "\@prefix ncbigene: <http://identifiers.org/ncbigene/> .\n";
+print "\@prefix : <https://dbcls.github.io/ncbigene-rdf/ontology.ttl#> .\n";
 print "\n";
 
 while (<>) {
@@ -56,17 +57,17 @@ sub print_only_human_orthologs {
 sub print_human_ortholog {
     my ($gene1, $gene2, $taxid) = @_;
     
-    print "ncbigene:$gene1 oo:hasOrtholog ncbigene:$gene2 .\n";
-    print "ncbigene:$gene2 oo:taxon taxid:$taxid . \n";
+    print "ncbigene:$gene1 orth:hasOrtholog ncbigene:$gene2 .\n";
+    print "ncbigene:$gene2 :taxid taxid:$taxid .\n";
     print "\n";
 }
 
 sub print_ortholog {
     my ($taxid1, $taxid2, $gene1, $gene2) = @_;
     
-    print "ncbigene:$gene1 oo:hasOrtholog ncbigene:$gene2 .\n";
-    print "ncbigene:$gene2 oo:hasOrtholog ncbigene:$gene1 .\n";
-    print "ncbigene:$gene1 oo:taxon taxid:$taxid1 . \n";
-    print "ncbigene:$gene2 oo:taxon taxid:$taxid2 . \n";
+    print "ncbigene:$gene1 orth:hasOrtholog ncbigene:$gene2 .\n";
+    print "ncbigene:$gene2 orth:hasOrtholog ncbigene:$gene1 .\n";
+    print "ncbigene:$gene1 :taxid taxid:$taxid1 .\n";
+    print "ncbigene:$gene2 :taxid taxid:$taxid2 .\n";
     print "\n";
 }
