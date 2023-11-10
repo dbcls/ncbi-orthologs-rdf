@@ -1,0 +1,4 @@
+ncbigene: <http://identifiers.org/ncbigene/>
+taxid: <http://identifiers.org/taxonomy/>
+ncbio: <https://dbcls.github.io/ncbigene-rdf/ontology.ttl#>
+orth: <http://purl.org/net/orth#>
