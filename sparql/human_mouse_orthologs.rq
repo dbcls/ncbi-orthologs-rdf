@@ -1,7 +1,3 @@
-#!/usr/bin/env spang2
-# @endpoint https://spang.dbcls.jp/sparql
-# @option -a
-
 PREFIX orth: <http://purl.org/net/orth#>
 PREFIX taxid: <http://identifiers.org/taxonomy/>
 PREFIX : <https://dbcls.github.io/ncbigene-rdf/ontology.ttl#>
