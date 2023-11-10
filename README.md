@@ -14,7 +14,7 @@ NCBI Gene
 ## Created RDF
 
 ```
-$ ./bin/ncbi_orthologs_rdf.pl data/gene_orthologs > data/gene_orthologs.ttl
+$ ./bin/ncbi_orthologs_rdf.pl gene_orthologs > gene_orthologs.ttl
 ```
 
 Creator
