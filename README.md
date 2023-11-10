@@ -20,6 +20,9 @@ $ ./bin/ncbi_orthologs_rdf.pl data/gene_orthologs > data/gene_orthologs.ttl
 Creator
 * Hirokazu Chiba
 
+SPARQL
+* [human_mouse_orthologs.rq](https://github.com/dbcls/ncbi-orthologs-rdf/blob/main/sparql/human_mouse_orthologs.rq)
+
 ## Summary
 
 For 19,584 human genes, orthologous genes were identified in other organisms
