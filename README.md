@@ -17,6 +17,20 @@ NCBI Gene
 $ ./bin/ncbi_orthologs_rdf.pl gene_orthologs > gene_orthologs.ttl
 ```
 
+```
+$ head gene_orthologs.ttl
+@prefix orth: <http://purl.org/net/orth#> .
+@prefix taxid: <http://identifiers.org/taxonomy/> .
+@prefix ncbigene: <http://identifiers.org/ncbigene/> .
+@prefix : <https://dbcls.github.io/ncbigene-rdf/ontology.ttl#> .
+
+ncbigene:30037 orth:hasOrtholog ncbigene:129711934 .
+ncbigene:129711934 orth:hasOrtholog ncbigene:30037 .
+ncbigene:30037 :taxid taxid:7955 .
+ncbigene:129711934 :taxid taxid:7782 .
+
+```
+
 Creator
 * Hirokazu Chiba
 
