@@ -17,6 +17,7 @@ NCBI Gene
 $ ./bin/ncbi_orthologs_rdf.pl gene_orthologs > gene_orthologs.ttl
 ```
 
+Excerpt from the created RDF
 ```
 $ head gene_orthologs.ttl
 @prefix orth: <http://purl.org/net/orth#> .
