@@ -20,6 +20,7 @@ WHERE {
   ?gene2 dct:description ?description2 .
   ?taxid2 rdfs:label "${taxname2}" .
 }
+ORDER BY ?gene1 ?gene2
 `;
 
   try {
