@@ -1,5 +1,5 @@
 $(function () { // When DOM is ready
-  $.get('../tsv/organisms', (res) => {
+  $.get('./tsv/organisms', (res) => {
     setupAutocomplete(res.trim().split('\n'));
     setupAutocomplete2(res.trim().split('\n'));
   });
