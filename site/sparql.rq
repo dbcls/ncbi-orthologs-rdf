@@ -1,0 +1,20 @@
+#!/usr/bin/env spang2
+# @endpoint spang
+# @option -a --time
+# @param taxname1="Homo sapiens"
+# @param taxname2="Danio rerio"
+# @input (ncbigene:1639) (ncbigene:1643) (ncbigene:1742)
+
+PREFIX orth: <http://purl.org/net/orth#>
+PREFIX taxid: <http://identifiers.org/taxonomy/>
+PREFIX : <https://dbcls.github.io/ncbigene-rdf/ontology.ttl#>
+
+SELECT DISTINCT ?gene1 ?gene2
+WHERE {
+  VALUES (?gene1) { ${INPUT} }
+  ?gene1 orth:hasOrtholog+ ?gene2 .
+  ?gene1 :taxid ?taxid1 .
+  ?taxid1 rdfs:label "${taxname1}" .
+  ?gene2 :taxid ?taxid2 .
+  ?taxid2 rdfs:label "${taxname2}" .
+}

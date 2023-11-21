@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>NCBI Orthologs RDF</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <label id="input_label" for="tags">Organism 1: </label><input id="tags" value="Homo sapiens">
+        &emsp;
+        <label id="input_label" for="tags2">Organism 2: </label><input id="tags2" value="Danio rerio">
+        <br><br>
+        NCBI Gene IDs of Organism 1:<br>
+        <textarea id="inputText" rows="10" cols="30">
+1639
+1643
+1742
+        </textarea>
+        <br>
+        <button id="submitButton">Search</button>
+        <br><br>
+        Orthologous relations between Organism 1 and Organism 2:
+        <table border="1" id="resultsTable">
+        </table>
+        
+        <script src="sparql.js"></script>
+        <script src="render-table.js"></script>
+    </body>
+</html>
+
+
+
+    
