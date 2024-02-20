@@ -5,8 +5,6 @@ $(function () { // When DOM is ready
   });
   $('#tags').focus();
 
-  const tags = document.getElementById("tags").value.replace(/ \(.+\)$/, '');
-  const tags2 = document.getElementById("tags2").value.replace(/ \(.+\)$/, '');
   const inputText = document.getElementById("inputText");
   const submitButton = document.getElementById("submitButton");
 
@@ -26,6 +24,8 @@ $(function () { // When DOM is ready
         .map(line => line.trim().replace(/^\s+/, ""))
         .filter(line => line !== "") // remove empty lines
         .map(line => `(ncbigene:${line})`).join(" ");
+    const tags = document.getElementById("tags").value.replace(/ \(.+\)$/, '');
+    const tags2 = document.getElementById("tags2").value.replace(/ \(.+\)$/, '');
     fetchDatabySPARQL(tags, tags2, lines).then(data => {
       renderTable(data);
     });
