@@ -45,4 +45,5 @@ for (my $i=0; $i<@TAXON; $i++) {
     push @OUT, $taxon;
 }
 
-print $TAXID, "\t", join(";", @OUT)."\n";
+my $NAME = $OUT[-1];
+print "taxid:$TAXID\t$NAME\t", join(";", @OUT)."\n";
