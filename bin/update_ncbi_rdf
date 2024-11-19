@@ -1,37 +1,25 @@
 #!/usr/bin/perl -w
 use strict;
-use File::Basename;
-use Getopt::Std;
-use File::Path;
-use Cwd 'abs_path';
-use Digest::SHA 'sha256_hex';
 use HTTP::Date 'str2time', 'time2iso';
-my $PROGRAM = basename $0;
-my $USAGE=
-"Usage: $PROGRAM [OPTIONS] URL
-";
 
+my $TARGET_URL = "ftp.ncbi.nlm.nih.gov/gene/DATA/gene_orthologs.gz";
 my $COMMAND = "curl --max-time 100000 -LfsS";
-
-my %OPT;
-getopts('', \%OPT);
+my $SCRIPT = "$ENV{HOME}/github/dbcls/ncbi-orthologs-rdf/bin/ncbi_orthologs_rdf.pl";
 
 ### Directories ###
-my $DIR = dirname(abs_path($0));
-chdir "$DIR/..";
-
-my $RDF_DIR = "rdf";
+my $RDF_DIR = "$ENV{HOME}/share/rdf";
 if (!-d $RDF_DIR) {
     mkdir $RDF_DIR or die "Cannot make directory: $RDF_DIR";
 }
-my $TMP_DIR = "tmp";
+my $TMP_DIR = "${RDF_DIR}/tmp";
 if (!-d $TMP_DIR) {
     mkdir $TMP_DIR or die "Cannot make directory: $TMP_DIR";
 }
 chdir $TMP_DIR or die "Cannot change directory: $TMP_DIR";
 
-my $URL = "ftp.ncbi.nlm.nih.gov/gene/DATA/gene_orthologs.gz";
-if ($URL =~ /^(.*\/)(\S.+)$/) {
+open(STDERR, ">>err") or die "Cannot redirect STDERR to 'err'";
+
+if ($TARGET_URL =~ /^(.*\/)(\S.+)$/) {
     my ($dir, $local_name) = ($1, $2);
 
     if (!-e $local_name) {
@@ -52,10 +40,11 @@ sub update_data {
 
     if ($local_name =~ /^(.*)\.gz$/) {
         my $file_name_prefix = $1;
-        system "$COMMAND -OR $URL";
-        system "cat $local_name | gunzip | ~/github/dbcls/ncbi-orthologs-rdf/bin/ncbi_orthologs_rdf.pl > ${file_name_prefix}.ttl";
+        system "$COMMAND -OR $TARGET_URL";
+        system "cat $local_name | gunzip | $SCRIPT > ${file_name_prefix}.ttl";
         system "touch -r $local_name ${file_name_prefix}.ttl";
-        system "mv -f ${file_name_prefix}.ttl ../rdf/";
+        system "ls -l ${file_name_prefix}.ttl >> ${file_name_prefix}.log";
+        system "mv -f ${file_name_prefix}.ttl ../";
     }
 }
 
