@@ -1,0 +1,16 @@
+#!/usr/bin/env spang2
+# @endpoint spang
+# @option -a --time
+# @param tax1=7955
+# @param tax2=8090
+
+PREFIX orth: <http://purl.org/net/orth#>
+PREFIX taxid: <http://identifiers.org/taxonomy/>
+PREFIX : <https://dbcls.github.io/ncbigene-rdf/ontology.ttl#>
+
+SELECT DISTINCT ?gene1 ?gene2
+WHERE {
+  ?gene1 orth:hasOrtholog+ ?gene2 .
+  ?gene1 :taxid taxid:${tax1} .
+  ?gene2 :taxid taxid:${tax2} .
+}
