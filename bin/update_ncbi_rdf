@@ -7,7 +7,7 @@ my $COMMAND = "curl --max-time 100000 -LfsS";
 my $SCRIPT = "$ENV{HOME}/github/dbcls/ncbi-orthologs-rdf/bin/ncbi_orthologs_rdf.pl";
 
 ### Directories ###
-my $RDF_DIR = "$ENV{HOME}/share/rdf";
+my $RDF_DIR = "$ENV{HOME}/share/rdf/ncbigene";
 if (!-d $RDF_DIR) {
     mkdir $RDF_DIR or die "Cannot make directory: $RDF_DIR";
 }
